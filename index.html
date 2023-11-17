@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/main.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <section class="world-countries">
+      <div class="container">
+        <div class="container--heading">
+          <h1>WORLD COUNTRIES</h1>
+          <p class="total"></p>
+        </div>
+
+        <div class="container--cards grid">
+          <label for="countries">Sort By:</label>
+          <select class="countries" id="countries" name="countries" size="1">
+            <option value="" disabled selected>Select An Option</option>
+            <option value="population">Population</option>
+            <option value="lang">Languages</option>
+            <option value="region">Region</option>
+          </select>
+
+          <ul>
+            <!-- APPEND CARD AND COUNTRIES HERE -->
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <script defer src="main.js"></script>
+  </body>
+</html>

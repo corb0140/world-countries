@@ -1,0 +1,214 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
+/* Root */
+:root {
+  --primary-color: #394a59;
+  --primary-color-light: #59758d;
+  --secondary-color: #36bf7f;
+  --secondary-color-light: #75d3a7;
+}
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Set core root defaults */
+html {
+  line-height: 1.5;
+  font-family: Roboto, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  margin: 0;
+}
+
+/* Update default margin */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure,
+blockquote,
+ul,
+ol,
+dl,
+dd {
+  margin: 0 0 1.5rem;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+}
+
+/* A elements that don't have a class get default styles */
+a {
+  text-decoration-skip-ink: auto;
+  color: #36bf7f;
+}
+​a:hover,
+a:focus-visible {
+  color: #d96666;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+svg {
+  fill: currentColor;
+}
+
+svg:not(:root) {
+  overflow: hidden;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------- Containers ---------- */
+
+.container {
+  width: min(65em, 100%);
+  margin: 0 auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+​.container--text {
+  width: min(45em, 100%);
+}
+
+/* ----- BTN ----- */
+.btn {
+  --btn-color: var(--primary-color, black);
+  display: inline-block;
+  border: 0.125em solid var(--btn-color);
+  border-radius: 0.25em;
+  padding: 0.55em 1.5em 0.5em;
+  background-color: var(--btn-color);
+  color: #fff;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+/* ---------- Typography ---------- */
+h1,
+h2 {
+  line-height: 1.3;
+}
+
+h1 {
+  font-size: 1.802rem;
+}
+
+h2 {
+  font-size: 1.602rem;
+}
+
+/* STYLING */
+
+.container--cards ul {
+  --cols: 1;
+  display: grid;
+  grid-template-columns: repeat(var(--cols), 1fr);
+  gap: 1.725rem;
+  padding: 0;
+  margin-top: 0.5rem;
+}
+
+li {
+  position: relative;
+  list-style: none;
+  min-height: 50vh;
+  background-color: deepskyblue;
+}
+
+li div {
+  position: absolute;
+  height: 50%;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+img {
+  object-fit: cover;
+  height: 80%;
+  width: 80%;
+}
+
+li div:nth-child(2) {
+  bottom: 0;
+}
+
+p {
+  margin: 0;
+}
+
+/* #countries {
+
+} */
+
+@media only screen and (min-width: 45em) {
+  .container--cards ul {
+    --cols: 2;
+  }
+
+  h1 {
+    font-size: 2.488rem;
+  }
+
+  h2 {
+    font-size: 1.802rem;
+  }
+}
+
+@media only screen and (min-width: 65em) {
+  .container--cards ul {
+    --cols: 3;
+  }
+}
