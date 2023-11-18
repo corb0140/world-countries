@@ -144,6 +144,7 @@ h1 {
 
 h2 {
   font-size: 1.602rem;
+  text-align: center;
 }
 
 /* STYLING */
@@ -187,6 +188,12 @@ li div:nth-child(2) {
 
 p {
   margin: 0;
+}
+
+.sorting-text {
+  font-size: 0.9rem;
+  padding: 0 1.5rem;
+  text-align: center;
 }
 
 /* #countries {

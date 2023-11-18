@@ -2,8 +2,6 @@
   getWorldCountries();
 })();
 
-let sortedData;
-
 function getWorldCountries() {
   fetch(
     "https://raw.githubusercontent.com/shah0150/data/main/countries_data.json"
@@ -26,7 +24,7 @@ function getWorldCountries() {
           let countryList = new DocumentFragment();
 
           sort.sort((a, b) => {
-            return a.population - b.population;
+            return b.population - a.population;
           });
 
           document.querySelector(".container ul").innerHTML = "";
@@ -41,9 +39,9 @@ function getWorldCountries() {
             <div>
              <h2>${country.name}</h2>
 
-              <p> ${country.population} <p/>
-              <p> ${country.languages} <p/>
-              <p> ${country.region} <p/>
+              <p class="sorting-text"> ${country.population} <p/>
+              <p class="sorting-text"> ${country.languages} <p/>
+              <p class="sorting-text"> ${country.region} <p/>
             </div>
             `;
             countryList.appendChild(item);
@@ -59,9 +57,9 @@ function getWorldCountries() {
           sort.sort((a, b) => {
             // console.log(a.languages > b.languages);
             if (a.languages > b.languages) {
-              return -1;
-            } else if (b.languages > a.languages) {
               return +1;
+            } else if (b.languages > a.languages) {
+              return -1;
             }
           });
 
@@ -77,9 +75,9 @@ function getWorldCountries() {
             <div>
              <h2>${country.name}</h2>
 
-              <p> ${country.population} <p/>
-              <p> ${country.languages} <p/>
-              <p> ${country.region} <p/>
+              <p class="sorting-text"> ${country.population} <p/>
+              <p class="sorting-text"> ${country.languages} <p/>
+              <p class="sorting-text"> ${country.region} <p/>
             </div>
             `;
             countryList.appendChild(item);
@@ -94,9 +92,9 @@ function getWorldCountries() {
 
           sort.sort((a, b) => {
             if (a.region > b.region) {
-              return -1;
-            } else if (b.region > a.region) {
               return +1;
+            } else if (b.region > a.region) {
+              return -1;
             }
           });
 
@@ -112,9 +110,9 @@ function getWorldCountries() {
             <div>
              <h2>${country.name}</h2>
 
-              <p> ${country.population} <p/>
-              <p> ${country.languages} <p/>
-              <p> ${country.region} <p/>
+              <p class="sorting-text"> ${country.population} <p/>
+              <p class="sorting-text"> ${country.languages} <p/>
+              <p class="sorting-text"> ${country.region} <p/>
             </div>
             `;
 
@@ -147,9 +145,9 @@ function getWorldCountries() {
         <div>
         <h2>${country.name}</h2>
 
-        <p> ${country.population} <p/>
-        <p> ${country.languages} <p/>
-        <p> ${country.region} <p/>
+        <p class="sorting-text"> ${country.population} <p/>
+        <p class="sorting-text"> ${country.languages} <p/>
+        <p class="sorting-text"> ${country.region} <p/>
         </div>
          
         `;
