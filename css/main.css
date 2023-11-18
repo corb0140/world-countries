@@ -191,9 +191,9 @@ p {
 }
 
 .sorting-text {
-  font-size: 0.9rem;
-  padding: 0 1.5rem;
+  font-size: clamp(0.8rem, 0.9rem, 100%);
   text-align: center;
+  padding: 0 1rem;
 }
 
 /* #countries {

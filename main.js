@@ -39,9 +39,9 @@ function getWorldCountries() {
             <div>
              <h2>${country.name}</h2>
 
-              <p class="sorting-text"> ${country.population} <p/>
-              <p class="sorting-text"> ${country.languages} <p/>
-              <p class="sorting-text"> ${country.region} <p/>
+              <p class="sorting-text"> ${country.population} </p>
+              <p class="sorting-text"> ${country.languages} </p>
+              <p class="sorting-text"> ${country.region} </p>
             </div>
             `;
             countryList.appendChild(item);
@@ -55,11 +55,12 @@ function getWorldCountries() {
           let countryList = new DocumentFragment();
 
           sort.sort((a, b) => {
-            // console.log(a.languages > b.languages);
-            if (a.languages > b.languages) {
-              return +1;
-            } else if (b.languages > a.languages) {
+            console.log(a.languages.length);
+
+            if (a.languages.length > b.languages.length) {
               return -1;
+            } else if (b.languages.length > a.languages.length) {
+              return +1;
             }
           });
 
@@ -75,9 +76,9 @@ function getWorldCountries() {
             <div>
              <h2>${country.name}</h2>
 
-              <p class="sorting-text"> ${country.population} <p/>
-              <p class="sorting-text"> ${country.languages} <p/>
-              <p class="sorting-text"> ${country.region} <p/>
+              <p class="sorting-text"> ${country.population} </p>
+              <p class="sorting-text"> ${country.languages} </p>
+              <p class="sorting-text"> ${country.region} </p>
             </div>
             `;
             countryList.appendChild(item);
@@ -110,9 +111,9 @@ function getWorldCountries() {
             <div>
              <h2>${country.name}</h2>
 
-              <p class="sorting-text"> ${country.population} <p/>
-              <p class="sorting-text"> ${country.languages} <p/>
-              <p class="sorting-text"> ${country.region} <p/>
+              <p class="sorting-text"> ${country.population} </p>
+              <p class="sorting-text"> ${country.languages} </p>
+              <p class="sorting-text"> ${country.region} </p>
             </div>
             `;
 
@@ -145,9 +146,9 @@ function getWorldCountries() {
         <div>
         <h2>${country.name}</h2>
 
-        <p class="sorting-text"> ${country.population} <p/>
-        <p class="sorting-text"> ${country.languages} <p/>
-        <p class="sorting-text"> ${country.region} <p/>
+        <p class="sorting-text"> ${country.population} </p>
+        <p class="sorting-text"> ${country.languages} </p>
+        <p class="sorting-text"> ${country.region} </p>
         </div>
          
         `;
