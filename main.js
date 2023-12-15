@@ -1,160 +1,112 @@
-(() => {
-  getWorldCountries();
-})();
+// MAIN PAGE JS
 
-function getWorldCountries() {
-  fetch(
-    "https://raw.githubusercontent.com/shah0150/data/main/countries_data.json"
-  )
-    .then((response) => {
-      console.log(response);
+const APP = {
+  cardContainer: document.querySelector("main"),
+  dataContainer: document.querySelector("ul"),
+  countries: document.querySelector(".countries"),
+  api: "https://raw.githubusercontent.com/shah0150/data/main/countries_data.json",
 
-      if (!response) {
-        throw new Error("Error Occurred");
-      } else {
+  init: function () {
+    APP.fetchData();
+
+    APP.dataContainer.innerHTML = "";
+    console.log("CONNECTED");
+  },
+
+  fetchData: function () {
+    const apiURL = APP.api;
+
+    fetch(apiURL)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Network has found an error: ${error.message}`);
+        }
+
         return response.json();
-      }
-    })
-    .then((sort) => {
-      const countries = document.querySelector(".countries");
+      })
+      .then((sort) => {
+        APP.buildHtml(sort);
 
-      countries.addEventListener("change", () => {
-        // SORT BY POPULATION
-        if (countries.selectedIndex === 1) {
-          let countryList = new DocumentFragment();
+        APP.countries.addEventListener("change", () => {
+          // SORT BY POPULATION
+          if (APP.countries.selectedIndex === 1) {
+            sort.sort((a, b) => {
+              return b.population - a.population;
+            });
+          }
 
-          sort.sort((a, b) => {
-            return b.population - a.population;
-          });
+          // SORT BY LANGUAGE
+          if (APP.countries.selectedIndex === 2) {
+            sort.sort((a, b) => {
+              return b.languages.length - a.languages.length;
+            });
+          }
 
-          document.querySelector(".container ul").innerHTML = "";
+          // SORT BY REGION
+          if (APP.countries.selectedIndex === 3) {
+            sort.sort((a, b) => {
+              if (a.region > b.region) {
+                return -1;
+              } else {
+                return +1;
+              }
+            });
+          }
 
-          sort.forEach((country, index) => {
-            let item = document.createElement("li");
-            item.innerHTML = `
-            <div>
-              <img src="${country.flag}"></> 
-            </div>
-            
-            <div>
-             <h2>${country.name}</h2>
-
-              <p class="sorting-text"> ${country.population} </p>
-              <p class="sorting-text"> ${country.languages} </p>
-              <p class="sorting-text"> ${country.region} </p>
-            </div>
-            `;
-            countryList.appendChild(item);
-          });
-
-          document.querySelector(".container ul").appendChild(countryList);
-        }
-
-        // SORT BY LANGUAGE
-        if (countries.selectedIndex === 2) {
-          let countryList = new DocumentFragment();
-
-          sort.sort((a, b) => {
-            console.log(a.languages.length);
-
-            if (a.languages.length > b.languages.length) {
-              return -1;
-            } else if (b.languages.length > a.languages.length) {
-              return +1;
-            }
-          });
-
-          document.querySelector(".container ul").innerHTML = "";
-
-          sort.forEach((country, index) => {
-            let item = document.createElement("li");
-            item.innerHTML = `
-            <div>
-              <img src="${country.flag}"></> 
-            </div>
-            
-            <div>
-             <h2>${country.name}</h2>
-
-              <p class="sorting-text"> ${country.population} </p>
-              <p class="sorting-text"> ${country.languages} </p>
-              <p class="sorting-text"> ${country.region} </p>
-            </div>
-            `;
-            countryList.appendChild(item);
-          });
-
-          document.querySelector(".container ul").appendChild(countryList);
-        }
-
-        // SORT BY REGION
-        if (countries.selectedIndex === 3) {
-          let countryList = new DocumentFragment();
-
-          sort.sort((a, b) => {
-            if (a.region > b.region) {
-              return +1;
-            } else if (b.region > a.region) {
-              return -1;
-            }
-          });
-
-          document.querySelector(".container ul").innerHTML = "";
-
-          sort.forEach((country, index) => {
-            let item = document.createElement("li");
-            item.innerHTML = `
-            <div>
-              <img src="${country.flag}"></> 
-            </div>
-            
-            <div>
-             <h2>${country.name}</h2>
-
-              <p class="sorting-text"> ${country.population} </p>
-              <p class="sorting-text"> ${country.languages} </p>
-              <p class="sorting-text"> ${country.region} </p>
-            </div>
-            `;
-
-            countryList.appendChild(item);
-          });
-
-          document.querySelector(".container ul").appendChild(countryList);
-        }
+          APP.buildHtml(sort);
+        });
+      })
+      .catch((err) => {
+        APP.errorHandler(err);
       });
+  },
 
-      return sort;
-    })
-    .then((data) => {
-      let countryList = new DocumentFragment();
-      let totalCountries;
+  buildHtml: function (data) {
+    console.log(data);
 
-      data.forEach((country, index) => {
-        totalCountries = data.length;
-        document.querySelector(
-          ".total"
-        ).innerHTML = `Total Number: ${totalCountries}`;
+    document.querySelector(".total").innerHTML = `Total Number: ${data.length}`;
+    let countryList = new DocumentFragment();
 
-        let item = document.createElement("li");
-        item.innerHTML = `
-        <div>
-        <img src="${country.flag}"></> 
-        </div>
-        
-       
-        <div>
-        <h2>${country.name}</h2>
+    data.forEach((country) => {
+      let li = document.createElement("li");
+      li.innerHTML = `
+      <a class="country__link" >
+        <h2>${country.name}</h2> 
+        <i class="fa-solid fa-arrow-right"></i>
+      </a>
+   `;
 
-        <p class="sorting-text"> ${country.population} </p>
-        <p class="sorting-text"> ${country.languages} </p>
-        <p class="sorting-text"> ${country.region} </p>
-        </div>
-         
-        `;
-
-        countryList.appendChild(item);
-      }); //end for each
-      document.querySelector(".container ul").appendChild(countryList);
+      countryList.appendChild(li);
     });
-}
+
+    APP.dataContainer.innerHTML = "";
+    APP.dataContainer.appendChild(countryList);
+  },
+
+  buildCountryCard: function (data) {
+    console.log(data);
+    let card = document.createElement("div");
+
+    card.innerHTML = `
+    <div class='country__image'> <img src="" alt="" /> </div>
+    <h2 class="country__name"></h2>
+    <div class="country__info">
+      <p></p>
+      <p></p>
+      <p></p>
+      <p></p>
+      <p></p>
+    </div>
+    `;
+
+    APP.cardContainer.appendChild(card);
+  },
+
+  errorHandler: function (error) {
+    console.log(error);
+  },
+};
+
+document.addEventListener("DOMContentLoaded", APP.init);
+
+// COUNTRY PAGE JS
