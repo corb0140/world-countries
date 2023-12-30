@@ -65,7 +65,9 @@ const APP = {
     console.log(data);
 
     document.querySelector(".total").innerHTML = `Total Number: ${data.length}`;
-    let countryList = new DocumentFragment();
+    // let countryList = new DocumentFragment();
+
+    APP.dataContainer.innerHTML = "";
 
     data.forEach((country) => {
       let li = document.createElement("li");
@@ -76,11 +78,18 @@ const APP = {
       </a>
    `;
 
-      countryList.appendChild(li);
+      APP.dataContainer.appendChild(li);
     });
 
-    APP.dataContainer.innerHTML = "";
-    APP.dataContainer.appendChild(countryList);
+    let countryLink = document.querySelectorAll(".country__link");
+
+    countryLink.forEach((link) => {
+      link.addEventListener("click", (ev) => {
+        console.log(
+          ev.currentTarget.firstElementChild.textContent + " Has been selected"
+        );
+      });
+    });
   },
 
   buildCountryCard: function (data) {
