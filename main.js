@@ -1,7 +1,13 @@
 // MAIN PAGE JS
+const back = document.querySelector(".back");
+
+back.addEventListener("click", () => {
+  window.location.reload();
+  console.log("clicked");
+});
 
 const APP = {
-  cardContainer: document.querySelector("main"),
+  cardContainer: document.querySelector(".card"),
   dataContainer: document.querySelector("ul"),
   countries: document.querySelector(".countries"),
   api: "https://raw.githubusercontent.com/shah0150/data/main/countries_data.json",
@@ -79,36 +85,44 @@ const APP = {
    `;
 
       APP.dataContainer.appendChild(li);
-    });
 
-    let countryLink = document.querySelectorAll(".country__link");
+      // -------- COUNTRY LINK -------------
 
-    countryLink.forEach((link) => {
-      link.addEventListener("click", (ev) => {
-        console.log(
-          ev.currentTarget.firstElementChild.textContent + " Has been selected"
-        );
+      let countryLink = document.querySelectorAll(".country__link");
+
+      countryLink.forEach((link) => {
+        link.addEventListener("click", (ev) => {
+          ev.stopImmediatePropagation();
+          console.log(
+            ev.currentTarget.firstElementChild.textContent +
+              " Has been selected"
+          );
+
+          APP.dataContainer.innerHTML = "";
+          APP.buildCountryCard(country);
+        });
       });
     });
   },
 
   buildCountryCard: function (data) {
     console.log(data);
-    let card = document.createElement("div");
 
-    card.innerHTML = `
-    <div class='country__image'> <img src="" alt="" /> </div>
-    <h2 class="country__name"></h2>
+    APP.cardContainer.innerHTML = "";
+
+    APP.cardContainer.innerHTML = `
+    <div class='country__image'> <img src="${data.flag}" alt="picture of a flag of ${data.name}" /> </div>
+    <h2 class="country__name">${data.name}</h2>
     <div class="country__info">
-      <p></p>
-      <p></p>
-      <p></p>
-      <p></p>
-      <p></p>
+      <p>capital: ${data.capital}</p>
+      <p>population: ${data.population}</p>
+      <p>language: ${data.languages}</p>
+      <p>region: ${data.region}</p>
+      <p>area: ${data.area}</p>
     </div>
     `;
 
-    APP.cardContainer.appendChild(card);
+    // APP.cardContainer.appendChild(card);
   },
 
   errorHandler: function (error) {
@@ -117,5 +131,3 @@ const APP = {
 };
 
 document.addEventListener("DOMContentLoaded", APP.init);
-
-// COUNTRY PAGE JS

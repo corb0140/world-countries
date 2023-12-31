@@ -145,17 +145,46 @@ h1 {
 
 h2 {
   font-size: 1.2rem;
-  text-align: center;
+  /* text-align: center; */
 }
 
 /* STYLING */
+.world-countries {
+  background-color: var(--secondary-color-light);
+  min-height: 100vh;
+}
 
+/* HEADING */
+.container--heading {
+  padding: 0.825rem 0;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+}
+
+span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 5em;
+  border: 0.25rem solid var(--primary-color);
+  color: var(--primary-color);
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+/* CARD */
 .container--cards ul {
   display: flex;
   flex-direction: column;
   gap: 0.635rem;
   padding: 0;
+  padding-bottom: 0.5rem;
   margin-top: 0.5rem;
+  margin-bottom: 0;
 
   list-style-type: none;
 }
@@ -175,10 +204,39 @@ li {
   cursor: pointer;
 
   text-decoration: none;
+  color: var(--primary-color);
+}
+
+.country__name {
+  font-size: 2rem;
+  text-transform: uppercase;
+  padding-top: 1rem;
+}
+
+.country__info {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+
+  margin-top: 1rem;
 }
 
 p {
   margin: 0;
+  text-transform: uppercase;
+  text-align: left;
+  padding: 0.5rem 0;
+  font-size: 1.1rem;
+}
+
+.country__image {
+  display: flex;
+}
+
+.country__image img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
 }
 
 @media only screen and (min-width: 45em) {
