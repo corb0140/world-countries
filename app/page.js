@@ -18,7 +18,7 @@ export default function Home({ searchParams }) {
     >
       <Header />
 
-      <div className="px-4 flex flex-col gap-y-5">
+      <div className="px-4 lg:px-10 flex flex-col gap-y-5 lg:flex-row lg:justify-between">
         <SearchCountry />
         <Filter />
       </div>

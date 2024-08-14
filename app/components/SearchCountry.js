@@ -6,7 +6,7 @@ const SearchCountry = () => {
 
   return (
     <form
-      className={`h-[3.5rem] flex items-center gap-x-5 w-full shadow-sm rounded-md px-5 ${
+      className={`h-[3.5rem] flex items-center gap-x-5 w-full lg:w-1/3 shadow-sm rounded-md px-5 ${
         theme === "light"
           ? "bg-white text-lightModeInput"
           : "bg-darkModeElements"

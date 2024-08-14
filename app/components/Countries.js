@@ -47,7 +47,7 @@ const Countries = ({ keyword }) => {
   }, [region, keyword]);
 
   return (
-    <div className="px-10 py-5 grid grid-cols-1 gap-y-5 ">
+    <div className="px-10 py-5 grid grid-cols-1 lg:grid-cols-4 lg:gap-x-20 gap-y-10 lg:gap-y-20">
       {resp.map((country, index) => {
         return (
           <div
@@ -64,7 +64,7 @@ const Countries = ({ keyword }) => {
               className="h-[200px] w-full object-cover rounded-t-lg"
             />
 
-            <div className="p-5 flex flex-col gap-y-2">
+            <div className="px-5 py-10 flex flex-col gap-y-2">
               <p className="mb-2 font-bold text-xl">{country.name.common}</p>
               <p className="flex gap-x-1">
                 <span className="font-semibold">Population:</span>

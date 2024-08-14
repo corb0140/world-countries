@@ -51,10 +51,11 @@ const DetailsPage = ({ data, country }) => {
           theme={theme}
           click={backToHome}
           style="text-sm"
+          width="lg:w-[100px]"
           span="keyboard_backspace"
         />
 
-        <div className="flex flex-col lg:flex-row gap-y-10 lg:gap-y-0 lg:gap-x-5">
+        <div className="flex flex-col lg:flex-row gap-y-10 lg:gap-y-0 lg:gap-x-20">
           {/* FLAG */}
           <Image
             src={resp.flags.svg}
@@ -62,7 +63,7 @@ const DetailsPage = ({ data, country }) => {
             width={0}
             height={0}
             priority
-            className="h-full w-full"
+            className="h-full w-full lg:w-[500px]"
           />
 
           {/* COUNTRY INFORMATION  */}
@@ -168,28 +169,30 @@ const DetailsPage = ({ data, country }) => {
                   })}
                 </p>
               </div>
-            </div>
-          </div>
 
-          {/* BORDER COUNTRIES */}
-          <div className="py-5 flex flex-col gap-y-3">
-            <p className="font-semibold">Border Countries:</p>
+              {/* BORDER COUNTRIES */}
+              <div className="py-5 w-full flex flex-col lg:flex-row lg:gap-x-5 gap-y-3 col-span-2">
+                <p className="font-semibold">Border Countries:</p>
 
-            <div className="flex flex-wrap gap-2">
-              {resp.borders &&
-                resp.borders.map((border, index) => {
-                  return (
-                    <Button
-                      key={index}
-                      text={border}
-                      theme={theme}
-                      style="text-[.7rem]"
-                      click={() =>
-                        router.push(`/countries/${encodeURIComponent(border)}`)
-                      }
-                    />
-                  );
-                })}
+                <div className="flex flex-wrap gap-2">
+                  {resp.borders &&
+                    resp.borders.map((border, index) => {
+                      return (
+                        <Button
+                          key={index}
+                          text={border}
+                          theme={theme}
+                          style="text-[.7rem]"
+                          click={() =>
+                            router.push(
+                              `/countries/${encodeURIComponent(border)}`
+                            )
+                          }
+                        />
+                      );
+                    })}
+                </div>
+              </div>
             </div>
           </div>
         </div>

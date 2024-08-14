@@ -44,7 +44,7 @@ const Filter = () => {
   return (
     <div className="relative">
       <div
-        className={`h-[3.5rem] w-2/3 rounded-lg shadow-[0px_0px_10px_rgb(0,0,0,.1)] flex items-center justify-between px-2 
+        className={`h-[3.5rem] w-2/3 lg:w-full rounded-lg shadow-[0px_0px_10px_rgb(0,0,0,.1)] flex items-center justify-between px-4 
          ${
            theme === "light"
              ? "bg-white text-lightModeText"
