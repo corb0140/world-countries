@@ -5,53 +5,34 @@ import Header from "@/app/components/Header";
 import Button from "@/app/UI/Button";
 
 import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
 
-const DetailsPage = ({ country }) => {
+const DetailsPage = ({ data, country }) => {
   const { theme } = useSelector((state) => state.theme);
-  const [resp, setResp] = useState(null);
+  const [resp, setResp] = useState([]);
   const router = useRouter();
+
+  useEffect(() => {
+    data.map((data) => {
+      if (
+        data.cioc === country ||
+        data.cca3 === country ||
+        data.cca2 === country ||
+        data.name.common.toLowerCase() === country.toLowerCase()
+      ) {
+        setResp(data);
+      }
+    });
+  }, [country, resp]);
+
+  if (resp.length === 0) {
+    return null;
+  }
 
   const backToHome = () => {
     router.back();
   };
-
-  useEffect(() => {
-    if (!country) return;
-
-    fetch(`https://restcountries.com/v3.1/name/${country}`, {
-      method: "GET",
-    })
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("Failed to fetch data");
-        }
-        return res.json();
-      })
-      .then((data) => {
-        data.map((data) => {
-          if (
-            data.cioc === country ||
-            data.cca3 === country ||
-            data.cca2 === country ||
-            data.name.common.toLowerCase() === country.toLowerCase()
-          ) {
-            return setResp(data);
-          }
-
-          setResp(data);
-        });
-      })
-      .catch((error) => {
-        console.error(error);
-        router.push("/not-found");
-      });
-  }, [country]);
-
-  if (!resp) {
-    return <div>Loading...</div>;
-  }
 
   return (
     <div
@@ -203,7 +184,9 @@ const DetailsPage = ({ country }) => {
                       text={border}
                       theme={theme}
                       style="text-[.7rem]"
-                      click={() => router.push(`/countries/?country=${border}`)}
+                      click={() =>
+                        router.push(`/countries/${encodeURIComponent(border)}`)
+                      }
                     />
                   );
                 })}

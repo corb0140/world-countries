@@ -11,7 +11,7 @@ const Countries = ({ keyword }) => {
   const router = useRouter();
 
   const navigateToCountry = (country) => {
-    router.push(`/countries?country=${country}`);
+    router.push(`/countries/${encodeURIComponent(country)}`);
   };
 
   useEffect(() => {
