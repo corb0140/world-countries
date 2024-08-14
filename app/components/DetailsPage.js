@@ -18,11 +18,10 @@ const DetailsPage = ({ country }) => {
   };
 
   useEffect(() => {
+    if (!country) return;
+
     fetch(`https://restcountries.com/v3.1/name/${country}`, {
       method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
     })
       .then((res) => {
         if (!res.ok) {
@@ -36,7 +35,7 @@ const DetailsPage = ({ country }) => {
             data.cioc === country ||
             data.cca3 === country ||
             data.cca2 === country ||
-            data.name.common === country
+            data.name.common.toLowerCase() === country.toLowerCase()
           ) {
             setResp(data);
           }
@@ -49,7 +48,7 @@ const DetailsPage = ({ country }) => {
   }, [country]);
 
   if (!resp) {
-    return null;
+    return <div>Loading...</div>;
   }
 
   return (
