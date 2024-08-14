@@ -37,8 +37,10 @@ const DetailsPage = ({ country }) => {
             data.cca2 === country ||
             data.name.common.toLowerCase() === country.toLowerCase()
           ) {
-            setResp(data);
+            return setResp(data);
           }
+
+          setResp(data);
         });
       })
       .catch((error) => {
