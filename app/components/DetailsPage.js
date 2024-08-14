@@ -18,7 +18,12 @@ const DetailsPage = ({ country }) => {
   };
 
   useEffect(() => {
-    fetch(`https://restcountries.com/v3.1/name/${country}`)
+    fetch(`https://restcountries.com/v3.1/name/${country}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
       .then((res) => {
         if (!res.ok) {
           throw new Error("Failed to fetch data");
@@ -33,9 +38,6 @@ const DetailsPage = ({ country }) => {
             data.cca2 === country ||
             data.name.common === country
           ) {
-            console.log(data.cioc);
-            console.log(country);
-            console.log(data);
             setResp(data);
           }
         });
