@@ -30,7 +30,7 @@ const DetailsPage = ({ data, country }) => {
     return null;
   }
 
-  const backToHome = () => {
+  const previousPage = () => {
     router.back();
   };
 
@@ -49,7 +49,7 @@ const DetailsPage = ({ data, country }) => {
         <Button
           text="Back"
           theme={theme}
-          click={backToHome}
+          click={previousPage}
           style="text-sm"
           width="lg:w-[100px]"
           span="keyboard_backspace"
