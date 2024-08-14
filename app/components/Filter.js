@@ -15,7 +15,6 @@ const Filter = () => {
   const dispatch = useDispatch();
   const selectRegion = (region) => {
     dispatch(setRegion(region));
-    console.log(region);
   };
 
   const variants = {

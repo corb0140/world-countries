@@ -10,8 +10,10 @@ const Countries = ({ keyword }) => {
   const { region } = useSelector((state) => state.region);
   const router = useRouter();
 
+  const base = process.env.BASE_URL;
+
   const navigateToCountry = (country) => {
-    router.push(`../countries/?country=${country}`);
+    router.push(`/countries/?country=${country}`);
   };
 
   useEffect(() => {
