@@ -171,7 +171,7 @@ const DetailsPage = ({ data, country }) => {
               </div>
 
               {/* BORDER COUNTRIES */}
-              <div className="py-5 w-full flex flex-col lg:flex-row lg:gap-x-5 gap-y-3 col-span-2">
+              <div className="py-5 w-full flex flex-col lg:flex-row lg:gap-x-5 gap-y-3 lg:col-span-2">
                 <p className="font-semibold">Border Countries:</p>
 
                 <div className="flex flex-wrap gap-2">
