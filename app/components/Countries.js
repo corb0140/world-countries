@@ -19,7 +19,7 @@ const Countries = ({ keyword }) => {
       let url = "";
 
       if (region === "All" || region === "") {
-        url = `https://restcountries.com/v3.1/all`;
+        url = `https://restcountries.com/v3.1/all?fields=flags,name`;
       } else {
         url = `https://restcountries.com/v3.1/region/${region}`;
       }
